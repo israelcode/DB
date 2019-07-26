@@ -1,0 +1,68 @@
+﻿1)// пары услуг для первого заказа
+
+SELECT a.id_o, a.id_s, b.id_s;
+ FROM data_service!order_2 a,data_service!order_2 b ;
+ WHERE a.id_o=b.id_o AND a.id>b.id 
+
+
+ 
+2) // КЛИЕНТ-ТС заказ был выполнен за мин время
+
+SELECT b.name as bn, c.name as cn, MIN(a.order_date_e-a.order_date_b) as M;
+FROM data_service!order a, data_service!client_service b, data_service!transport c INTO CURSOR tmp;
+WHERE a.id_t=c.id_t AND b.id_c=a.id_c GROUP BY b.name, c.name
+
+SELECT tmp.bn, tmp.cn, M FROM tmp;
+where M in (SELECT MIN(M) FROM tmp)
+
+
+
+
+3)// заказы с задержкой не более 2 дней
+SELECT a.id_o, a.return_date-a.order_date_e;
+ FROM data_service!order a;
+ WHERE a.return_date-a.order_date_e<2
+
+
+4) КЛИЕНТ-ТС, не заказывающий заданную услугу(maintenance  -   id_s=1)
+
+
+SELECT b.name, c.name;
+ FROM data_service!order a, data_service!client_service b, data_service!transport c;
+ WHERE a.id_t=c.id_t AND b.id_c=a.id_c AND b.id_c NOT IN(SELECT b.id_c; 
+FROM data_service!order a, data_service!client_service b, data_service!order_2 c;  
+WHERE a.id_c=b.id_c AND a.id_o=c.id_o HAVING c.id_s=1)
+
+
+5)КЛИЕНТ, ЗАКАЗ КОТОРОГО САМЫЙ ДОРОГОЙ
+// суммы для каждого заказа
+
+
+SELECT o2.id_o as ido, SUM(s.price) as S ;
+ FROM data_service!order_2 o2, data_service!serveice s INTO CURSOR tmp;
+ WHERE o2.id_s=s.id_s;
+ GROUP BY o2.id_o
+
+
+SELECT tmp.S, tmp.ido, cs.name FROM tmp, data_service!client_service cs, data_service!order o;
+Where tmp.ido=o.id_o AND o.id_c=cs.id_c AND S in (SELECT MAX(S) FROM tmp)
+
+
+
+
+
+
+6) Механик который на заданном интервале дат выполнил работу на макс сумму
+интервал (01.01.18-01.10.18)
+
+
+SELECT o2.id_m as idm, SUM(s.price) as S ;
+ FROM data_service!order_2 o2, data_service!serveice s, data_service!order o  INTO CURSOR tmp;
+ WHERE o2.id_s=s.id_s AND o2.id_o=o.id_o AND o.order_date_b>=CTOD("01.01.2017") AND o.order_date_e<=CTOD("02.20.2019");
+ GROUP BY o2.id_m
+
+SELECT tmp.idm, S, m.name ;
+ FROM tmp, data_service!mechanic m;
+where idm=m.id_m AND S in (SELECT MAX(S) FROM tmp)
+
+
