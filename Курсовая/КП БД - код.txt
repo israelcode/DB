@@ -1,0 +1,42 @@
+”«Õ¿“‹ «¿ ¿«€ Õ¿ ¬€œŒÀÕ≈Õ»≈ (‚ÌÛÚ ËÌÚÂÙÂÈÒ)
+SELECT order_2.id_o as order_id, serveice.name as service, order.order_date_e as deadline, transport.name as transport, transport.engine_id;
+From mechanic, order_2, serveice, order, transport;
+WHERE mechanic.id_m=CAST(ThisForm.Text1.Value AS INT(4)) AND mechanic.id_m=order_2.id_m AND order_2.id_s=serveice.id_s AND order_2.id_o=order.id_o AND order.id_t=transport.id_t
+
+
+
+
+
+
+
+
+
+—ƒ≈À¿“‹ «¿ ¿« (œŒÀ‹«)
+INSERT INTO client_service(name, number, email, age, gender) VALUES(CAST(ThisForm.Text1.Value AS CHAR(10)), CAST(ThisForm.Text5.Value AS DOUBLE(8)), CAST(ThisForm.Text4.Value AS CHAR(20)), CAST(ThisForm.Text6.Value AS INT(4)), CAST(ThisForm.Combo2.Value AS CHAR(1)))
+INSERT INTO transport(type, name, engine_id) VALUES(CAST(ThisForm.Combo3.Value AS CHAR(10)),CAST(ThisForm.Text2.Value AS CHAR(20)),CAST(ThisForm.Text3.Value AS INT(4)))
+
+param1=ThisForm.Text1.Value
+param2=ThisForm.Text2.Value
+param3=ThisForm.Combo1.Value
+param4=DATE()
+
+INSERT INTO order (id_t, id_c) ; 
+SELECT t.id_t, cs.id_c;
+ FROM client_service cs, transport t;
+ WHERE cs.name=param1 AND t.name=param2
+ 
+INSERT INTO order_2 (id_o,id_s) ;
+SELECT o.id_o,s.id_s;
+ FROM order o, client_service cs, transport t, serveice s;
+ WHERE cs.name=param1 AND t.name=param2 AND o.id_t=t.id_t AND o.id_c=cs.id_c AND s.name=param3
+
+*!*	SELECT s.id_s;
+*!*	 FROM serveice s;
+*!*	 WHERE s.name=param3
+
+
+
+”«Õ¿“‹ Œ «¿ ¿«≈
+SELECT transport.name as machine, serveice.name as service, order.order_date_e as End_of_service;
+FROM order, order_2, transport, serveice;
+WHERE order.id_o= CAST(ThisForm.Text1.Value AS INT(4)) AND order.id_o=order_2.id_o AND transport.id_t=order.id_t AND serveice.id_s=order_2.id_s
