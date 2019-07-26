@@ -1,2 +1,2 @@
 # DB
-Data bases course
+data bases course
