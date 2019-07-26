@@ -1,0 +1,4 @@
+SELECT Transport.name, Transport.engine_id;
+ FROM data_service!transport;
+ WHERE  Transport.type = 'moto';
+   OR  Transport.type = 'auto'

@@ -1,0 +1,5 @@
+SELECT Order.id_c;
+ FROM ;
+     data_service!order;
+ GROUP BY Order.id_c;
+ HAVING  COUNT(Order.id_o) > ( 1 )

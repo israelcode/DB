@@ -1,0 +1,13 @@
+SELECT AVG(Serveice.price), Mechanic.name;
+ FROM ;
+     data_service!client_service ;
+    INNER JOIN data_service!order ;
+   ON  Client_service.id_c = Order.id_c ;
+    INNER JOIN data_service!order_2 ;
+   ON  Order.id_o = Order_2.id_o ;
+    INNER JOIN data_service!serveice ;
+   ON  Serveice.id_s = Order_2.id_s ;
+    INNER JOIN data_service!mechanic ;
+   ON  Mechanic.id_m = Order_2.id_m;
+ GROUP BY Mechanic.name;
+ HAVING  AVG(Serveice.price) > ( 30 )

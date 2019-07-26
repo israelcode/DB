@@ -1,0 +1,4 @@
+SELECT MAX(Serveice.serviceperiod), Serveice.name;
+ FROM data_service!serveice;
+ GROUP BY Serveice.name;
+ HAVING  Serveice.name LIKE ( "c%" )

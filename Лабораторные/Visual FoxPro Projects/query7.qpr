@@ -1,0 +1,4 @@
+SELECT Mechanic.name;
+ FROM data_service!mechanic;
+ WHERE  Mechanic.name LIKE 'B%';
+   OR  Mechanic.name LIKE '_e%'

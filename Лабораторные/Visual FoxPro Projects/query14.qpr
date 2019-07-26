@@ -1,0 +1,10 @@
+SELECT Client_service.name, Transport.type;
+ FROM ;
+     data_service!client_service ;
+    INNER JOIN data_service!order ;
+   ON  Client_service.id_c = Order.id_c ;
+    INNER JOIN data_service!transport ;
+   ON  Transport.id_t = Order.id_t;
+ WHERE  Client_service.name LIKE ( "a%" );
+   OR  Client_service.name LIKE ( "_a%" );
+   OR  Client_service.id_c IN ('1','2','3')

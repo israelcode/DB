@@ -1,0 +1,2 @@
+SELECT *;
+ FROM data_service!client_service
