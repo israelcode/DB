@@ -1,0 +1,3 @@
+SELECT COUNT(Serveice.name), SUM(Serveice.price), AVG(Serveice.price),;
+  MIN(Serveice.name), MAX(Serveice.name);
+ FROM data_service!serveice

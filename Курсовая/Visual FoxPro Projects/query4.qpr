@@ -1,0 +1,4 @@
+SELECT Client_service.name;
+ FROM data_service!client_service;
+ WHERE  Client_service.gender = 'm';
+   AND  Client_service.email LIKE '%8%'

@@ -1,0 +1,15 @@
+SELECT Client_service.name, MIN(Serveice.price);
+ FROM ;
+     data_service!client_service ;
+    INNER JOIN data_service!order ;
+   ON  Client_service.id_c = Order.id_c ;
+    INNER JOIN data_service!transport ;
+   ON  Transport.id_t = Order.id_t ;
+    INNER JOIN data_service!order_2 ;
+   ON  Order.id_o = Order_2.id_o ;
+    INNER JOIN data_service!serveice ;
+   ON  Serveice.id_s = Order_2.id_s ;
+    INNER JOIN data_service!mechanic ;
+   ON  Mechanic.id_m = Order_2.id_m;
+ GROUP BY Client_service.name;
+ HAVING  MIN(Serveice.price) > ( 17 )

@@ -1,0 +1,4 @@
+SELECT MAX(Order.order_date_b), Order.id_c;
+ FROM ;
+     data_service!order;
+ GROUP BY Order.id_c

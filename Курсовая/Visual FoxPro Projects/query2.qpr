@@ -1,0 +1,3 @@
+SELECT Client_service.name, Client_service.number,;
+  Client_service.email;
+ FROM data_service!client_service

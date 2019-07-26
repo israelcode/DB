@@ -1,0 +1,9 @@
+SELECT COUNT(Order_2.id);
+ FROM ;
+     data_service!order ;
+    INNER JOIN data_service!order_2 ;
+   ON  Order.id_o = Order_2.id_o ;
+    INNER JOIN data_service!client_service ;
+   ON  Client_service.id_c = Order.id_c ;
+    INNER JOIN data_service!serveice ;
+   ON  Serveice.id_s = Order_2.id_s

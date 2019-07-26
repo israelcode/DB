@@ -1,0 +1,3 @@
+SELECT Client_service.id_c, Client_service.name, Mechanic.id_m,;
+  Mechanic.name;
+ FROM data_service!client_service, data_service!mechanic

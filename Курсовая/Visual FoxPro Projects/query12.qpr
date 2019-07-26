@@ -1,0 +1,4 @@
+SELECT MAX(Serveice.serviceperiod), Serveice.price, Serveice.id_s;
+ FROM data_service!serveice;
+ GROUP BY Serveice.price, Serveice.id_s;
+ HAVING  Serveice.price BETWEEN 15 and 25
